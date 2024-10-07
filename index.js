@@ -35,10 +35,15 @@ const decodeToken = (req, res, next) => {
 
 // Protected route that requires a decoded JWT
 app.get('/user-info', decodeToken, (req, res) => {
-    res.json({
-        message: 'User information retrieved successfully',
-        user: req.user  // This contains the decoded token data
-    });
+    if(undefined != req.params["redirect"]){
+        return res.redirect('https://portal-kong.zelarsoft.com/default');
+    }
+    else{
+        res.json({
+            message: 'User information retrieved successfully',
+            user: req.user  // This contains the decoded token data
+        });
+    }
 });
 
 // Start the server

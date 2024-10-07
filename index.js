@@ -7,16 +7,18 @@ const PORT = process.env.PORT || 3000;
 // Middleware to decode the JWT without verification
 const decodeToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-
+    console.log(req.get('Referer'))
     // JWT is typically sent in the format "Bearer <token>"
     const token = authHeader && authHeader.split(' ')[1];
-
+    console.log("token====",token);
     if (token == null) {
+        console.log("redirecting");
         // Redirect to the default URL if the token is not present
         return res.redirect('https://portal-kong.zelarsoft.com/default');
     }
 
     try {
+        console.log("not redirecting");
         // Decode the token without verification
         const decoded = jwt.decode(token);
         

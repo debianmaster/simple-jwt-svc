@@ -12,7 +12,8 @@ const decodeToken = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1];
 
     if (token == null) {
-        return res.status(401).json({ message: 'No token provided, authorization denied' });
+        // Redirect to the default URL if the token is not present
+        return res.redirect('https://portal-kong.zelarsoft.com/default');
     }
 
     try {

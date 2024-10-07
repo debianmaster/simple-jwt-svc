@@ -11,6 +11,7 @@ const decodeToken = (req, res, next) => {
     // JWT is typically sent in the format "Bearer <token>"
     const token = authHeader && authHeader.split(' ')[1];
     console.log("token====",token);
+    console.log("params=",req.params)
     if (undefined == token) {
         console.log("redirecting");
         // Redirect to the default URL if the token is not present
@@ -35,6 +36,7 @@ const decodeToken = (req, res, next) => {
 
 // Protected route that requires a decoded JWT
 app.get('/user-info', decodeToken, (req, res) => {
+    console.log("params=",req)
     if(undefined != req.params["redirect"]){
         return res.redirect('https://portal-kong.zelarsoft.com/default');
     }

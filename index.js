@@ -11,7 +11,7 @@ const decodeToken = (req, res, next) => {
     // JWT is typically sent in the format "Bearer <token>"
     const token = authHeader && authHeader.split(' ')[1];
     console.log("token====",token);
-    if (token == null) {
+    if (undefined == token) {
         console.log("redirecting");
         // Redirect to the default URL if the token is not present
         return res.redirect('https://portal-kong.zelarsoft.com/default');

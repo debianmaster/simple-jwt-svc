@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware to decode the JWT without verification
 const decodeToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    console.log(req.get('Referer'))
+    console.log(req.headers)
     // JWT is typically sent in the format "Bearer <token>"
     const token = authHeader && authHeader.split(' ')[1];
     console.log("token====",token);
